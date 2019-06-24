@@ -585,13 +585,14 @@
                     return top;
                 }
 
-                function elCarouselItem(element){
-                    if (element.parents('.carousel-item').css('display') !== 'none') return false;
+                function elCarouselItem(element) {
+                    if (!element.parents().is('.carousel-item') || element.parents('.carousel-item').css('display') !== 'none') return false;
+                    
                     var parentEl = element.parents('.carousel-item').parent();
                     if (parentEl.find('.carousel-item.active .hidden.animated').lenght){
                         return false;
                     }
-                    if (parentEl.attr('data-visible') > 1){
+                    else if (parentEl.attr('data-visible') > 1){
                         var visibleSlides = parentEl.attr('data-visible');
                         if (element.parents().is('.cloneditem-' + (visibleSlides - 1)) && element.parents('.cloneditem-' + (visibleSlides - 1)).attr('data-cloned-index') >= visibleSlides){
                             return true;
@@ -732,7 +733,7 @@
                 var videoIframe = $(item).parents('section').find('iframe')[0],
                     videoIframeSrc = $(videoIframe).attr('src');
 
-                item.parents('section').css('z-index', '5000');
+                item.parents('section').css('z-index', '1');
 
                 if (videoIframeSrc.indexOf('youtu') !== -1) {
                     videoIframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
@@ -812,6 +813,43 @@
                             }
                         }
                     );
+
+                    function floatingLine() {
+                        var $menu = $('.js-float-line');
+                        $menu.each(function () {
+                            var $currentMenu = $(this),
+                            $menuItem = $('.js-float-line .nav-item');
+                            $menuItem.mouseenter(function () {
+                                var $listItem = $(this),
+                                    $link = $listItem.find('.nav-link');
+                                if($currentMenu.find('.main-menu-animated-line').length){
+                                    terminateCssValue($link)
+                                }else{
+                                    $currentMenu.append('<li class="main-menu-animated-line bottom"></li>');
+                                    terminateCssValue()
+                                }
+                                function terminateCssValue() {
+                                    var leftMargin = $link.css("margin-left"),
+                                        widthItem = $link.width(),
+                                        offset = $listItem.position()['left']+parseInt(leftMargin);
+                                    moveLine(widthItem, offset);
+                                }
+                            });
+                            $menu.on('mouseleave', function () {
+                                $('.main-menu-animated-line').remove();
+                            });
+                            function moveLine(widthItem, offset) {
+                                var $thisLine = $menu.find('.main-menu-animated-line');
+                                $thisLine.css("width", widthItem);
+                                $thisLine.css("left", offset);
+                            }
+
+                        })
+                    }
+                    if (typeof floatingLine !== "undefined"){
+                        floatingLine()
+                    }
+
                 }
             }    
         }
@@ -830,79 +868,6 @@
         $target.find('.carousel-controls a').attr('href','#'+$carouselID);
         $target.find('.carousel-indicators li').attr('data-target','#'+$carouselID);
         setActiveCarouselItem($target);  
-    }
-    function initClientCarousel(card){
-        var $target = $(card),
-        countElems = $target.find('.carousel-item').length,
-        visibleSlides = $target.find('.carousel-inner').attr('data-visible');
-        if (countElems < visibleSlides){
-            visibleSlides = countElems;
-        }
-        $target.find('.carousel-inner').attr('class', 'carousel-inner slides' + visibleSlides);
-        $target.find('.clonedCol').remove();
-
-        $target.find('.carousel-item .col-md-12').each(function() {
-            if (visibleSlides < 2) {
-                $(this).attr('class', 'col-md-12');
-            } else if (visibleSlides == '5') {
-                $(this).attr('class', 'col-md-12 col-lg-15');
-            } else {
-                $(this).attr('class', 'col-md-12 col-lg-' + 12 / visibleSlides);
-            }
-        });
-
-        $target.find('.carousel-item').each(function() {
-            var itemToClone = $(this);
-            for (var i = 1; i < visibleSlides; i++) {
-                itemToClone = itemToClone.next();
-                if (!itemToClone.length) {
-                    itemToClone = $(this).siblings(':first');
-                }
-                var index = itemToClone.index();
-                itemToClone.find('.col-md-12:first').clone().addClass('cloneditem-' + i).addClass('clonedCol').attr('data-cloned-index', index).appendTo($(this).children().eq(0));
-            }
-        });
-    }
-    function updateClientCarousel(card){
-        var $target = $(card),
-            countElems = $target.find('.carousel-item').length,
-            visibleSlides = $target.find('.carousel-inner').attr('data-visible');
-        if (countElems < visibleSlides){
-            visibleSlides = countElems;
-        }
-        $target.find('.clonedCol').remove();
-        $target.find('.carousel-item').each(function() {
-            var itemToClone = $(this);
-            for (var i = 1; i < visibleSlides; i++) {
-                itemToClone = itemToClone.next();
-                if (!itemToClone.length) {
-                    itemToClone = $(this).siblings(':first');
-                }
-                var index = itemToClone.index();
-                itemToClone.find('.col-md-12:first').clone().addClass('cloneditem-' + i).addClass('clonedCol').attr('data-cloned-index', index).appendTo($(this).children().eq(0));
-            }
-        });
-    }
-    function clickHandler(e){
-        e.stopPropagation();
-        e.preventDefault();
-
-        var $target = $(e.target);
-        var curItem;
-        var curIndex;
-
-        if ($target.closest('.clonedCol').length) {
-            curItem = $target.closest('.clonedCol');
-            curIndex = curItem.attr('data-cloned-index');
-        } else {
-            curItem = $target.closest('.carousel-item');
-            curIndex = curItem.index();
-        }
-        var item = $($target.closest('.carousel-inner').find('.carousel-item')[curIndex]).find('img')[0];
-                        
-        if ($target.parents('.clonedCol').length > 0) {
-            item.click();
-        }
     }
     $.fn.outerFind = function(selector) {
         return this.find(selector).addBack(selector);
@@ -934,25 +899,6 @@
         event.preventDefault();
     }
     if(!isBuilder){
-        if(typeof window.initClientPlugin ==='undefined'){
-            if($(document.body).find('.clients').length!=0){
-                window.initClientPlugin = true;
-                $(document.body).find('.clients').each(function(index, el) {
-                    if(!$(this).attr('data-isinit')){
-                        initTestimonialsCarousel($(this));
-                        initClientCarousel($(this));
-                    }  
-                });  
-            } 
-        }
-        if(typeof window.initPopupBtnPlugin === 'undefined'){
-            if($(document.body).find('section.popup-btn-cards').length!=0){
-                window.initPopupBtnPlugin = true;
-                $('section.popup-btn-cards .card-wrapper').each(function(index, el) {
-                    $(this).addClass('popup-btn');
-                }); 
-            }      
-        }
         if(typeof window.initTestimonialsPlugin === 'undefined'){
             if($(document.body).find('.testimonials-slider').length!=0){
                 window.initTestimonialsPlugin = true;
@@ -961,53 +907,17 @@
                 }); 
             }      
         }
-        if (typeof window.initSwitchArrowPlugin === 'undefined'){
-            window.initSwitchArrowPlugin = true;
-            $(document).ready(function() {
-                if ($('.accordionStyles').length!=0) {
-                        $('.accordionStyles .card-header a[role="button"]').each(function(){
-                            if(!$(this).hasClass('collapsed')){
-                                $(this).addClass('collapsed');
-                            }
-                        });
-                    }
-            });
-            $('.accordionStyles .card-header a[role="button"]').click(function(){
-                var $id = $(this).closest('.accordionStyles').attr('id'),
-                    $iscollapsing = $(this).closest('.card').find('.panel-collapse');
-                if (!$iscollapsing.hasClass('collapsing')) {
-                    if ($id.indexOf('toggle') != -1){
-                        if ($(this).hasClass('collapsed')) {
-                            $(this).find('span.sign').removeClass('mbri-arrow-down').addClass('mbri-arrow-up'); 
-                        }
-                        else{
-                            $(this).find('span.sign').removeClass('mbri-arrow-up').addClass('mbri-arrow-down'); 
-                        }
-                    }
-                    else if ($id.indexOf('accordion')!=-1) {
-                        var $accordion =  $(this).closest('.accordionStyles ');
-                    
-                        $accordion.children('.card').each(function() {
-                            $(this).find('span.sign').removeClass('mbri-arrow-up').addClass('mbri-arrow-down'); 
-                        });
-                        if ($(this).hasClass('collapsed')) {
-                            $(this).find('span.sign').removeClass('mbri-arrow-down').addClass('mbri-arrow-up'); 
-                        }
-                    }
-                }
-            });
-        }
         if(typeof window.initTabsPlugin === 'undefined'){
             window.initTabsPlugin = true;
             initTabs(document.body);
         }
-        
-        // Fix for slider bug
+        // fix for slider bug
         if($('.mbr-slider.carousel').length!=0){
             $('.mbr-slider.carousel').each(function(){
                 var $slider = $(this),
                     controls = $slider.find('.carousel-control'),
                     indicators = $slider.find('.carousel-indicators li');
+
                 $slider.on('slide.bs.carousel', function () {
                     controls.bind('click',function(event){
                         clickPrev(event);
@@ -1108,15 +1018,5 @@
 
     $(document).on('change', 'input[type="range"]', function(e){
         $(e.target).parents('.form-group').find('.value')[0].innerHTML = e.target.value;
-    });
-
-    if ($('section.featuresLink .card-wrapper .card-img a').length){
-        $('section.featuresLink .card-wrapper .card-img a').each(function(){
-            $(this).parents('.card-wrapper').css('cursor', 'pointer');
-        }); 
-    }
-    $('section.featuresLink .card-wrapper').on('click', function(e){
-        if ($(e.target)[0].href === undefined || $(e.target)[0] === $(this).find('.card-img a')[0])
-            window.location = $(this).find('.card-img a')[0].href;
     });
 })(jQuery);
