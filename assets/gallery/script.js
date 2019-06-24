@@ -102,8 +102,8 @@
             e.preventDefault();
             var $li = $(this).closest('li');
 
-            $li.parent().find('a').removeClass('active');
-            $(this).addClass('active');
+            $li.parent().find('li').removeClass('active');
+            $li.addClass('active');
 
             var $mas = $li.closest('section').find('.mbr-gallery-row');
             var filter = $(this).html().trim();
@@ -120,24 +120,19 @@
                 if ($.inArray(filter, tagsTrimmed) === -1 && !$li.hasClass('mbr-gallery-filter-all')) {
                     $elem.addClass('mbr-gallery-item__hided');
 
-                    setTimeout(function() {
-                        $elem.css('left', '300px');
-                    }, 200);
+                    $elem.css('left', '300px');
                 } else {
                     $elem.removeClass('mbr-gallery-item__hided');
                 }
             });
 
-            setTimeout(function() {
-                $mas.closest('.mbr-gallery-row').trigger('filter');
-            }, 50);
+            $mas.closest('.mbr-gallery-row').trigger('filter');
         });
     })
-    $(document).on('add.cards changeParameter.cards changeButtonColor.cards', function(event) {
+    $(document).on('add.cards changeParameter.cards', function(event) {
         var $section = $(event.target),
             allItem = $section.find('.mbr-gallery-filter-all');
         var filterList = [];
-
         $section.find('.mbr-gallery-item').each(function(el) {
             var tagsAttr = ($(this).attr('data-tags') || "").trim();
             var tagsList = tagsAttr.split(',');
@@ -150,18 +145,15 @@
             });
         });
 
-        if ($section.find('.mbr-gallery-filter').length > 0 && $(event.target).find('.mbr-gallery-filter').hasClass('gallery-filter-active') && !$(event.target).find('.mbr-gallery-filter').hasClass('mbr-shop-filter')) {
+        if ($section.find('.mbr-gallery-filter').length > 0 && $(event.target).find('.mbr-gallery-filter').hasClass('gallery-filter-active')) {
             var filterHtml = '';
-
-            var classAttr = allItem.find('a').attr('class') || '';
-            classAttr = classAttr.replace(/(^|\s)active(\s|$)/, ' ').trim();
 
             $section.find('.mbr-gallery-filter ul li:not(li:eq(0))').remove();
 
             filterList.map(function(el) {
-                filterHtml += '<li><a class="' + classAttr + '" href>' + el + '</a></li>';
+                filterHtml += '<li><a class="btn btn-md btn-primary-outline" href>' + el + '</a></li>';
             });
-            $section.find('.mbr-gallery-filter ul').append(filterHtml);
+            $section.find('.mbr-gallery-filter ul').append(allItem).append(filterHtml);
 
         } else {
             $section.find('.mbr-gallery-item__hided').removeClass('mbr-gallery-item__hided');
