@@ -1605,9 +1605,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		    a.download = 'MobiriseSetup.exe';
 		    document.body.appendChild(a);
 		    a.click();
+			document.location = "https://mobirise.com/extensions/kit";
 		    window.URL.revokeObjectURL(url);
 		    alert('your file has downloaded!'); // or you know, something with better UX..
-			document.location = "https://mobirise.com/extensions/kit";
 		  })
 		  .catch(() => alert('oh no!'));
      }
