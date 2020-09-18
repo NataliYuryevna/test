@@ -1525,28 +1525,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <h5 class="mbr-section-subtitle mbr-fonts-style mb-2 display-4">
                     <strong>Links</strong></h5>
                     <p class="mbr-text mbr-fonts-style mb-4 display-7"><a href="https://mobirise.com/es/" style="font-style: normal;">Creador de sitios web</a>
-				<br><a href="https://mobirise.com/it/" style="font-style: normal;">Creare un sito gratis</a>
-				<br><a href="https://mobirise.com/fr/" style="font-style: normal;">Créer un site internet</a>
-				<br><a href="https://mobirise.com/de/" style="font-style: normal;">Kostenlose Homepage erstellen</a>
-				<br><a href="https://mobirise.com/nl/" style="font-style: normal;">Mobiele Website Bouwer</a>
-				<br><a href="https://mobirise.com/no/" style="font-style: normal;">Lage hjemmeside gratis</a>
-				<br><a href="https://mobirise.com/zh/" style="font-style: normal;">免费制作网页软件</a>
-				<br><a href="https://mobirise.com/pl/" style="font-style: normal;">Twórz niesamowite strony</a>
-				<br><a href="https://mobirise.com/el/" style="font-style: normal;">Δημιουργήστε φοβερές ιστοσελίδες</a>
-				<br><a href="https://mobirise.com/ko/" style="font-style: normal;">사이트를 만들어보세요</a><br></p>
+                <br><a href="https://mobirise.com/it/" style="font-style: normal;">Creare un sito gratis</a>
+                <br><a href="https://mobirise.com/fr/" style="font-style: normal;">Créer un site internet</a>
+                <br><a href="https://mobirise.com/de/" style="font-style: normal;">Kostenlose Homepage erstellen</a>
+                <br><a href="https://mobirise.com/nl/" style="font-style: normal;">Mobiele Website Bouwer</a>
+                <br><a href="https://mobirise.com/no/" style="font-style: normal;">Lage hjemmeside gratis</a>
+                <br><a href="https://mobirise.com/zh/" style="font-style: normal;">免费制作网页软件</a>
+                <br><a href="https://mobirise.com/pl/" style="font-style: normal;">Twórz niesamowite strony</a>
+                <br><a href="https://mobirise.com/el/" style="font-style: normal;">Δημιουργήστε φοβερές ιστοσελίδες</a>
+                <br><a href="https://mobirise.com/ko/" style="font-style: normal;">사이트를 만들어보세요</a><br></p>
             </div>
             <div class="col-12 col-md-6 col-lg-3">
                 <h5 class="mbr-section-subtitle mbr-fonts-style mb-2 display-4">
                     <strong>Links</strong></h5>
                     <p class="mbr-text mbr-fonts-style mb-4 display-7"><a href="https://mobirise.com/pt/" style="font-style: normal;">Construtor de Sites</a>
-				<br><a href="https://mobirise.com/ru/" style="font-style: normal;">Конструктор мобильных сайтов</a>
-				<br><a href="https://mobirise.com/ja/" style="font-style: normal;">ホームページ作成</a>
-				<br><a href="https://mobirise.com/da/" style="font-style: normal;">Lav din egen hjemmeside</a>
-				<br><a href="https://mobirise.com/fi/" style="font-style: normal;">Kotisivukone</a>
-				<br><a href="https://mobirise.com/sv/" style="font-style: normal;">Skapa hemsida</a>
-				<br><a href="https://mobirise.com/sq/" style="font-style: normal;">Krijo faqe interneti</a>
-				<br><a href="https://mobirise.com/sk/" style="font-style: normal;">Vytvorte webové stránky</a>
-				<br><a href="https://mobirise.com/tr/" style="font-style: normal;">Web siteleri yaratın</a><br></p>
+                <br><a href="https://mobirise.com/ru/" style="font-style: normal;">Конструктор мобильных сайтов</a>
+                <br><a href="https://mobirise.com/ja/" style="font-style: normal;">ホームページ作成</a>
+                <br><a href="https://mobirise.com/da/" style="font-style: normal;">Lav din egen hjemmeside</a>
+                <br><a href="https://mobirise.com/fi/" style="font-style: normal;">Kotisivukone</a>
+                <br><a href="https://mobirise.com/sv/" style="font-style: normal;">Skapa hemsida</a>
+                <br><a href="https://mobirise.com/sq/" style="font-style: normal;">Krijo faqe interneti</a>
+                <br><a href="https://mobirise.com/sk/" style="font-style: normal;">Vytvorte webové stránky</a>
+                <br><a href="https://mobirise.com/tr/" style="font-style: normal;">Web siteleri yaratın</a><br></p>
             </div>
         </div>
     </div>
@@ -1625,13 +1625,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             item.setAttribute('download','https://download.mobirise.com/MobiriseSetup.dmg');
         }*/
         item.addEventListener('click', function (e) {
+            let arrow = document.createElement('div');
+                arrow.innerHTML = "<div class=\"download-hint\"><div class=\"hint-text\">Click to Start</div> <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 15.98 200\" width=\"30\" height=\"200\"><g><line x1=\"7.99\" x2=\"7.99\" y2=\"175.64\" fill=\"none\" stroke=\"#f36\" stroke-miterlimit=\"10\" stroke-width=\"5\" stroke-dasharray=\"20 20\"></line> <polygon points=\"0 170.19 7.99 200 15.98 170.19 0 170.19\" fill=\"#f36\"></polygon></g></svg></div>";
             if(/mobirise-free-win\.zip/.test(e.target.href)) {
                 downloadFile('https://download.mobirise.com/MobiriseSetup.exe').then(function() {
+                    console.log('isChrome', isChrome);
                     if (isChrome) {
                         setTimeout(_ => {
-                            let arrow = document.createElement('div');
-                            arrow.innerHTML = "<div class=\"download-hint\"><div class=\"hint-text\">Click to Start</div> <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 15.98 200\" width=\"30\" height=\"200\"><g><line x1=\"7.99\" x2=\"7.99\" y2=\"175.64\" fill=\"none\" stroke=\"#f36\" stroke-miterlimit=\"10\" stroke-width=\"5\" stroke-dasharray=\"20 20\"></line> <polygon points=\"0 170.19 7.99 200 15.98 170.19 0 170.19\" fill=\"#f36\"></polygon></g></svg></div>"
                             document.body.append(arrow);
+                            console.log(document.body);
                             let downloadArrow = document.body.querySelector('.download-hint')
                             downloadArrow.addEventListener('click', function () {
                                 downloadArrow.remove();
