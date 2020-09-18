@@ -1595,17 +1595,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     function downloadFile(urlToSend) {
         var req = new XMLHttpRequest();
-        req.open("GET", urlToSend, true);
+	req.open("GET", downloadUrl, true);
 	req.responseType = "blob";
-	req.onload = function (event) {
-	    var blob = req.response;
-	    var fileName = req.getResponseHeader("MobiriseSetup.exe") //if you have the fileName header available
-	    var link=document.createElement('a');
-	    link.href=window.URL.createObjectURL(blob);
-	    link.download=fileName;
-	    link.click();
-	};
+	req.setRequestHeader('my-custom-header', 'custom-value'); // adding some headers (if needed)
 
+	req.onload = function (event) {
+	  var blob = req.response;
+	  var fileName = 'MobiriseSetup.exe';
+	  var contentType = req.getResponseHeader("content-type");
+
+	  if (window.navigator.msSaveOrOpenBlob) {
+	    // Internet Explorer
+	    window.navigator.msSaveOrOpenBlob(new Blob([blob], {type: contentType}), fileName);
+	  } else {
+	    var el = document.getElementById("target");
+	    el.href = window.URL.createObjectURL(blob);
+	    el.download = fileName;
+	    el.click();
+	  }
+	};
 	req.send();
      }
 
