@@ -1395,16 +1395,16 @@ you can use the kit on up to 10 computers. "You have exceeded the maximum number
   <script src="assets/theme/js/script.js"></script>
  
  <script>
+ $('a[download="Mobirise.exe"], a[download="Mobirise.dmg"]').click(function(){
+  console.log($(this).attr('download'));
+ });
  if(/download=mobirise-mac.exe/.test(location.href)) {
- $('a[download="Mobirise.dmg"]').get(0).click();
+  $('a[download="Mobirise.dmg"]').get(0).click();
   console.log("Mobirise.dmg", $('a[download="Mobirise.dmg"]'));
  } else if(/download=mobirise-win.exe/.test(location.href)){
   $('a[download="Mobirise.exe"]').get(0).click();
   console.log("Mobirise.exe", $('a[download="Mobirise.exe"]'));
  }
-  $('a[download="Mobirise.exe"], a[download="Mobirise.dmg"]').click(function(){
-  console.log($(this).attr('download'));
- });
  </script>
   
   
