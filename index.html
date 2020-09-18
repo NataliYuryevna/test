@@ -1595,8 +1595,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     function downloadFile(urlToSend) {
         fetch(urlToSend)
-		  .then(resp => {
-			const blob = resp.blob();
+		  .then(resp => resp.blob())
+	    	  .then(blob => {
 		    const url = window.URL.createObjectURL(blob);
 		    const a = document.createElement('a');
 		    a.style.display = 'none';
