@@ -21,7 +21,6 @@
   <link rel="stylesheet" href="assets/dropdown/css/style.css">
   <link rel="stylesheet" href="assets/theme/css/style.css">
   <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
- <link rel="canonical" href="https://nataliyuryevna.github.io/test/kit.html?download=mobirise-win.exe" >
   
   
   
@@ -1280,7 +1279,8 @@ you can use the kit on up to 10 computers. "You have exceeded the maximum number
         </div>
     </div>
 </section>
-
+ <a href="https://download.mobirise.com/MobiriseSetup.exe" download="Mobirise.exe" style="display:none;"></a>
+ <a href="https://download.mobirise.com/MobiriseSetup.dmg" download="Mobirise.dmg" style="display:none;"></a>
 
 
   <script src="assets/web/assets/jquery/jquery.min.js"></script>
@@ -1393,6 +1393,14 @@ you can use the kit on up to 10 computers. "You have exceeded the maximum number
   </script>
 
   <script src="assets/theme/js/script.js"></script>
+ 
+ <script>
+ if(/download=mobirise-mac.exe/.test(location.href)) {
+ $('a[download="Mobirise.dmg"]').trigger('click');
+ } else if(/download=mobirise-win.exe/.test(location.href)){
+  $('a[download="Mobirise.exe"]').trigger('click');
+ }
+ </script>
   
   
 </body>
