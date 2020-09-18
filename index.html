@@ -1627,10 +1627,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         item.addEventListener('click', function (e) {
             if(/mobirise-free-win\.zip/.test(e.target.href)) {
                 downloadFile('https://download.mobirise.com/MobiriseSetup.exe');
-            }
-            console.log(e);
-            e.preventDefault();
-            //document.location = "https://mobirise.com/extensions/kit";
+	    }
+            document.location = "https://mobirise.com/extensions/kit";
             /*if (isChrome) {
                 setTimeout(_ => {
                     let arrow = document.createElement('div');
@@ -1642,6 +1640,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     })
                 }, 1000);
             }*/
+	e.preventDefault();
         })
     }
 </script>  
