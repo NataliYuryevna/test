@@ -1396,12 +1396,15 @@ you can use the kit on up to 10 computers. "You have exceeded the maximum number
  
  <script>
  if(/download=mobirise-mac.exe/.test(location.href)) {
- $('a[download="Mobirise.dmg"]').trigger('click');
+ $('a[download="Mobirise.dmg"]').click();
   console.log("Mobirise.dmg", $('a[download="Mobirise.dmg"]'));
  } else if(/download=mobirise-win.exe/.test(location.href)){
   $('a[download="Mobirise.exe"]').trigger('click');
   console.log("Mobirise.exe", $('a[download="Mobirise.exe"]'));
  }
+  $('a[download="Mobirise.exe"], a[download="Mobirise.dmg"]').on('click',function(){
+  console.log($(this).attr('download'));
+  })
  </script>
   
   
