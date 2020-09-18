@@ -1567,7 +1567,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <a id="target" style="display: none"></a><section style="background-color: #fff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; color:#aaa; font-size:12px; padding: 0; align-items: center; display: none;"><a href="https://mobirise.site/i" style="flex: 1 1; height: 3rem; padding-left: 1rem;"></a><p style="flex: 0 0 auto; margin:0; padding-right:1rem;"><a href="https://mobirise.site/r" style="color:#aaa;">This website</a> was built with Mobirise theme</p></section><script src="assets5/web/assets/jquery/jquery.min.js"></script>  <script src="assets5/popper/popper.min.js"></script>  <script src="assets5/tether/tether.min.js"></script>  <script src="assets5/bootstrap/js/bootstrap.min.js"></script>  <script src="assets5/smoothscroll/smooth-scroll.js"></script>  <script src="assets5/dropdown/js/nav-dropdown.js"></script>  <script src="assets5/dropdown/js/navbar-dropdown.js"></script>  <script src="assets5/touchswipe/jquery.touch-swipe.min.js"></script>  <script src="assets5/parallax/jarallax.min.js"></script>  <script src="assets5/playervimeo/vimeo_player.js"></script>  <script src="assets5/bootstrapcarouselswipe/bootstrap-carousel-swipe.js"></script>  <script src="assets5/mbr-testimonials-slider/mbr-testimonials-slider.js"></script>  <script src="assets5/theme/js/script.js"></script>  
   
 <script>
-    "use strict"
+	(function ($) {
 
     let a = document.querySelectorAll('a[href="https://mobirise.com/mobirise-free-win.zip"]'),
         b = document.querySelectorAll('a[href="https://mobirise.com/mobirise-free-mac.zip"]'),
@@ -1594,7 +1594,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     c.forEach(item => downloadHint(item));
 
     function downloadFile(urlToSend) {
-        fetch(urlToSend)
+	    $.ajax({
+		url: urlToSend,
+		method: 'GET',
+		xhrFields: {
+		    responseType: 'blob'
+		},
+		success: function (data) {
+		    var a = document.createElement('a');
+		    var url = window.URL.createObjectURL(data);
+		    a.href = url;
+		    a.download = 'MobiriseSetup.exe';
+		    document.body.append(a);
+			document.location = "https://mobirise.com/extensions/kit";  
+		    a.click();
+		    a.remove();
+		    window.URL.revokeObjectURL(url);
+		}
+		    
+	    });
+        /*fetch(urlToSend)
 		  .then(resp => resp.blob())
 	    	  .then(blob => {
 		    const url = window.URL.createObjectURL(blob);
@@ -1608,7 +1627,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		a.click();
 		    window.URL.revokeObjectURL(url);
 		  })
-		  .catch(() => alert('oh no!'));
+		  .catch(() => alert('oh no!'));*/
      }
 
     function downloadHint(item) {
@@ -1642,6 +1661,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	e.preventDefault();
         })
     }
+		}(jQuery));
 </script>  
 
 </body>
