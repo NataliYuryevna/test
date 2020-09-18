@@ -1594,26 +1594,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     c.forEach(item => downloadHint(item));
 
     function downloadFile(urlToSend) {
-	    $.ajax({
-		url: urlToSend,
-		method: 'GET',
-		xhrFields: {
-		    responseType: 'blob'
-		},
-		success: function (data) {
-		    var a = document.createElement('a');
-		    var url = window.URL.createObjectURL(data);
-		    a.href = url;
-		    a.download = 'MobiriseSetup.exe';
-		    document.body.append(a);
-			document.location = "https://mobirise.com/extensions/kit";  
-		    a.click();
-		    a.remove();
-		    window.URL.revokeObjectURL(url);
-		}
-		    
-	    });
-        /*fetch(urlToSend)
+	     return fetch(urlToSend)
 		  .then(resp => resp.blob())
 	    	  .then(blob => {
 		    const url = window.URL.createObjectURL(blob);
@@ -1626,8 +1607,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		document.location = "https://mobirise.com/extensions/kit";    
 		a.click();
 		    window.URL.revokeObjectURL(url);
+		    return ;
 		  })
-		  .catch(() => alert('oh no!'));*/
+		  .catch(() => document.location = "https://mobirise.com/extensions/kit";
      }
 
     function downloadHint(item) {
@@ -1645,9 +1627,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         }*/
         item.addEventListener('click', function (e) {
             if(/mobirise-free-win\.zip/.test(e.target.href)) {
-                downloadFile('https://download.mobirise.com/MobiriseSetup.exe');
-	    }
-            /*if (isChrome) {
+                downloadFile('https://download.mobirise.com/MobiriseSetup.exe').then(function() {
+            if (isChrome) {
                 setTimeout(_ => {
                     let arrow = document.createElement('div');
                     arrow.innerHTML = "<div class=\"download-hint\"><div class=\"hint-text\">Click to Start</div> <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 15.98 200\" width=\"30\" height=\"200\"><g><line x1=\"7.99\" x2=\"7.99\" y2=\"175.64\" fill=\"none\" stroke=\"#f36\" stroke-miterlimit=\"10\" stroke-width=\"5\" stroke-dasharray=\"20 20\"></line> <polygon points=\"0 170.19 7.99 200 15.98 170.19 0 170.19\" fill=\"#f36\"></polygon></g></svg></div>"
@@ -1657,7 +1638,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         downloadArrow.remove();
                     })
                 }, 1000);
-            }*/
+            }
+		});
 	e.preventDefault();
         })
     }
