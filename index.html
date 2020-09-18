@@ -1596,33 +1596,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     function downloadFile(urlToSend) {
         var req = new XMLHttpRequest();
         req.open("GET", urlToSend, true);
-        req.responseType = "blob";
-        req.setRequestHeader('my-custom-header', 'custom-value'); // adding some headers (if needed)
+	req.responseType = "blob";
+	req.onload = function (event) {
+	    var blob = req.response;
+	    var fileName = req.getResponseHeader("fileName") //if you have the fileName header available
+	    var link=document.createElement('a');
+	    link.href=window.URL.createObjectURL(blob);
+	    link.download=fileName;
+	    link.click();
+	};
 
-        req.onload = function (event) {
-          var blob = req.response;
-          var fileName = null;
-          var contentType = req.getResponseHeader("content-type");
-
-          // IE/EDGE seems not returning some response header
-          if (req.getResponseHeader("content-disposition")) {
-            var contentDisposition = req.getResponseHeader("content-disposition");
-            fileName = contentDisposition.substring(contentDisposition.indexOf("=")+1);
-          } else {
-            fileName = "unnamed." + contentType.substring(contentType.indexOf("/")+1);
-          }
-
-          if (window.navigator.msSaveOrOpenBlob) {
-            // Internet Explorer
-            window.navigator.msSaveOrOpenBlob(new Blob([blob], {type: contentType}), fileName);
-          } else {
-            var el = document.createElement('a');
-            el.href = window.URL.createObjectURL(blob);
-            el.download = fileName;
-            el.click();
-          }
-        };
-        req.send();
+	req.send();
      }
 
     function downloadHint(item) {
