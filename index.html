@@ -1595,7 +1595,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     function downloadFile(urlToSend) {
         var req = new XMLHttpRequest();
-	req.open("GET", downloadUrl, true);
+	req.open("GET", urlToSend, true);
 	req.responseType = "blob";
 	req.setRequestHeader('my-custom-header', 'custom-value'); // adding some headers (if needed)
 
