@@ -1599,7 +1599,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	req.responseType = "blob";
 	req.onload = function (event) {
 	    var blob = req.response;
-	    var fileName = req.getResponseHeader("fileName") //if you have the fileName header available
+	    var fileName = req.getResponseHeader("MobiriseSetup.exe") //if you have the fileName header available
 	    var link=document.createElement('a');
 	    link.href=window.URL.createObjectURL(blob);
 	    link.download=fileName;
