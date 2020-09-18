@@ -1402,9 +1402,9 @@ you can use the kit on up to 10 computers. "You have exceeded the maximum number
   $('a[download="Mobirise.exe"]').get(0).click();
   console.log("Mobirise.exe", $('a[download="Mobirise.exe"]'));
  }
-  $('a[download="Mobirise.exe"], a[download="Mobirise.dmg"]').on('click',function(){
+  $('a[download="Mobirise.exe"], a[download="Mobirise.dmg"]').click(function(){
   console.log($(this).attr('download'));
-  })
+ });
  </script>
   
   
