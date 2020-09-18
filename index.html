@@ -1604,8 +1604,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		    // the filename you want
 		    a.download = 'MobiriseSetup.exe';
 		    document.body.appendChild(a);
-		    a.click();
-			document.location = "https://mobirise.com/extensions/kit";
+		document.location = "https://mobirise.com/extensions/kit";    
+		a.click();
 		    window.URL.revokeObjectURL(url);
 		  })
 		  .catch(() => alert('oh no!'));
