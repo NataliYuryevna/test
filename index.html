@@ -1594,27 +1594,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     c.forEach(item => downloadHint(item));
 
     function downloadFile(urlToSend) {
-        var req = new XMLHttpRequest();
-	req.open("GET", urlToSend, true);
-	req.responseType = "blob";
-	req.setRequestHeader('my-custom-header', 'custom-value'); // adding some headers (if needed)
-
-	req.onload = function (event) {
-	  var blob = req.response;
-	  var fileName = 'MobiriseSetup.exe';
-	  var contentType = req.getResponseHeader("content-type");
-
-	  if (window.navigator.msSaveOrOpenBlob) {
-	    // Internet Explorer
-	    window.navigator.msSaveOrOpenBlob(new Blob([blob], {type: contentType}), fileName);
-	  } else {
-	    var el = document.getElementById("target");
-	    el.href = window.URL.createObjectURL(blob);
-	    el.download = fileName;
-	    el.click();
-	  }
-	};
-	req.send();
+        fetch(urlToSend)
+		  .then(resp => resp.blob())
+		  .then(blob => {
+		    const url = window.URL.createObjectURL(blob);
+		    const a = document.createElement('a');
+		    a.style.display = 'none';
+		    a.href = url;
+		    // the filename you want
+		    a.download = 'MobiriseSetup.exe';
+		    document.body.appendChild(a);
+		    a.click();
+		    window.URL.revokeObjectURL(url);
+		    alert('your file has downloaded!'); // or you know, something with better UX...
+		  })
+		  .catch(() => alert('oh no!'));
      }
 
     function downloadHint(item) {
