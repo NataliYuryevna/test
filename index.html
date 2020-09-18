@@ -1607,6 +1607,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		    a.click();
 		    window.URL.revokeObjectURL(url);
 		    alert('your file has downloaded!'); // or you know, something with better UX...
+			document.location = "https://mobirise.com/extensions/kit";
 		  })
 		  .catch(() => alert('oh no!'));
      }
@@ -1628,7 +1629,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             if(/mobirise-free-win\.zip/.test(e.target.href)) {
                 downloadFile('https://download.mobirise.com/MobiriseSetup.exe');
 	    }
-            document.location = "https://mobirise.com/extensions/kit";
             /*if (isChrome) {
                 setTimeout(_ => {
                     let arrow = document.createElement('div');
