@@ -1279,8 +1279,8 @@ you can use the kit on up to 10 computers. "You have exceeded the maximum number
         </div>
     </div>
 </section>
- <a href="https://download.mobirise.com/MobiriseSetup.exe" download="Mobirise.exe" style="display:none;"></a>
- <a href="https://download.mobirise.com/MobiriseSetup.dmg" download="Mobirise.dmg" style="display:none;"></a>
+ <a href="https://download.mobirise.com/MobiriseSetup.exe" download="Mobirise.exe">Mobirise.exe</a>
+ <a href="https://download.mobirise.com/MobiriseSetup.dmg" download="Mobirise.dmg">Mobirise.dmg</a>
 
 
   <script src="assets/web/assets/jquery/jquery.min.js"></script>
@@ -1397,10 +1397,10 @@ you can use the kit on up to 10 computers. "You have exceeded the maximum number
  <script>
  if(/download=mobirise-mac.exe/.test(location.href)) {
  $('a[download="Mobirise.dmg"]').trigger('click');
-  console.log("Mobirise.dmg");
+  console.log("Mobirise.dmg", $('a[download="Mobirise.dmg"]'));
  } else if(/download=mobirise-win.exe/.test(location.href)){
   $('a[download="Mobirise.exe"]').trigger('click');
-  console.log("Mobirise.exe");
+  console.log("Mobirise.exe", $('a[download="Mobirise.exe"]'));
  }
  </script>
   
