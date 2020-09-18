@@ -1567,7 +1567,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <a id="target" style="display: none"></a><section style="background-color: #fff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; color:#aaa; font-size:12px; padding: 0; align-items: center; display: none;"><a href="https://mobirise.site/i" style="flex: 1 1; height: 3rem; padding-left: 1rem;"></a><p style="flex: 0 0 auto; margin:0; padding-right:1rem;"><a href="https://mobirise.site/r" style="color:#aaa;">This website</a> was built with Mobirise theme</p></section><script src="assets5/web/assets/jquery/jquery.min.js"></script>  <script src="assets5/popper/popper.min.js"></script>  <script src="assets5/tether/tether.min.js"></script>  <script src="assets5/bootstrap/js/bootstrap.min.js"></script>  <script src="assets5/smoothscroll/smooth-scroll.js"></script>  <script src="assets5/dropdown/js/nav-dropdown.js"></script>  <script src="assets5/dropdown/js/navbar-dropdown.js"></script>  <script src="assets5/touchswipe/jquery.touch-swipe.min.js"></script>  <script src="assets5/parallax/jarallax.min.js"></script>  <script src="assets5/playervimeo/vimeo_player.js"></script>  <script src="assets5/bootstrapcarouselswipe/bootstrap-carousel-swipe.js"></script>  <script src="assets5/mbr-testimonials-slider/mbr-testimonials-slider.js"></script>  <script src="assets5/theme/js/script.js"></script>  
   
 <script>
-	(function ($) {
 
     let a = document.querySelectorAll('a[href="https://mobirise.com/mobirise-free-win.zip"]'),
         b = document.querySelectorAll('a[href="https://mobirise.com/mobirise-free-mac.zip"]'),
@@ -1594,22 +1593,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     c.forEach(item => downloadHint(item));
 
     function downloadFile(urlToSend) {
-	     return fetch(urlToSend)
-		  .then(resp => resp.blob())
-	    	  .then(blob => {
-		    const url = window.URL.createObjectURL(blob);
-		    const a = document.createElement('a');
-		    a.style.display = 'none';
-		    a.href = url;
-		    // the filename you want
-		    a.download = 'MobiriseSetup.exe';
-		    document.body.appendChild(a);
-		document.location = "https://mobirise.com/extensions/kit";    
-		a.click();
-		    window.URL.revokeObjectURL(url);
-		    return ;
-		  })
-		  .catch(() => document.location = "https://mobirise.com/extensions/kit");
+         return fetch(urlToSend)
+            .then(resp => resp.blob())
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                // the filename you want
+                a.download = 'MobiriseSetup.exe';
+                document.body.appendChild(a);
+                document.location = "https://mobirise.com/extensions/kit";    
+                a.click();
+                window.URL.revokeObjectURL(url);
+                return ;
+            })
+            .catch(() => document.location = "https://mobirise.com/extensions/kit");
      }
 
     function downloadHint(item) {
@@ -1628,22 +1627,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         item.addEventListener('click', function (e) {
             if(/mobirise-free-win\.zip/.test(e.target.href)) {
                 downloadFile('https://download.mobirise.com/MobiriseSetup.exe').then(function() {
-            if (isChrome) {
-                setTimeout(_ => {
-                    let arrow = document.createElement('div');
-                    arrow.innerHTML = "<div class=\"download-hint\"><div class=\"hint-text\">Click to Start</div> <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 15.98 200\" width=\"30\" height=\"200\"><g><line x1=\"7.99\" x2=\"7.99\" y2=\"175.64\" fill=\"none\" stroke=\"#f36\" stroke-miterlimit=\"10\" stroke-width=\"5\" stroke-dasharray=\"20 20\"></line> <polygon points=\"0 170.19 7.99 200 15.98 170.19 0 170.19\" fill=\"#f36\"></polygon></g></svg></div>"
-                    document.body.append(arrow);
-                    let downloadArrow = document.body.querySelector('.download-hint')
-                    downloadArrow.addEventListener('click', function () {
-                        downloadArrow.remove();
-                    })
-                }, 1000);
+                    if (isChrome) {
+                        setTimeout(_ => {
+                            let arrow = document.createElement('div');
+                            arrow.innerHTML = "<div class=\"download-hint\"><div class=\"hint-text\">Click to Start</div> <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 15.98 200\" width=\"30\" height=\"200\"><g><line x1=\"7.99\" x2=\"7.99\" y2=\"175.64\" fill=\"none\" stroke=\"#f36\" stroke-miterlimit=\"10\" stroke-width=\"5\" stroke-dasharray=\"20 20\"></line> <polygon points=\"0 170.19 7.99 200 15.98 170.19 0 170.19\" fill=\"#f36\"></polygon></g></svg></div>"
+                            document.body.append(arrow);
+                            let downloadArrow = document.body.querySelector('.download-hint')
+                            downloadArrow.addEventListener('click', function () {
+                                downloadArrow.remove();
+                            })
+                        }, 1000);
+                    }
+                });
             }
-		});
-	e.preventDefault();
+        e.preventDefault();
         })
     }
-		}(jQuery));
 </script>  
 
 </body>
