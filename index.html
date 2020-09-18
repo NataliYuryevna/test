@@ -1619,10 +1619,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     function downloadHint(item) {
         console.log(item.getAttribute('href'));
-        if(/mobirise-free-win\.zip/.test(item.getAttribute('href'))) {
+        /*if(/mobirise-free-win\.zip/.test(item.getAttribute('href'))) {
             //item.setAttribute('href','https://download.mobirise.com/MobiriseSetup.exe');
             item.setAttribute('download','https://download.mobirise.com/MobiriseSetup.exe');
-        } /*else if (/mobirise-free-mac\.zip/.test(item.getAttribute('href'))) {
+        } else if (/mobirise-free-mac\.zip/.test(item.getAttribute('href'))) {
             //item.setAttribute('href','https://download.mobirise.com/MobiriseSetup.dmg');
             item.setAttribute('download','https://download.mobirise.com/MobiriseSetup.dmg');
         }else if (/win/i.test(navigator.platform)) {
@@ -1630,7 +1630,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         } else if(/mac/i.test(navigator.platform)) {
             item.setAttribute('download','https://download.mobirise.com/MobiriseSetup.dmg');
         }*/
-        /*item.addEventListener('click', function (e) {
+        item.addEventListener('click', function (e) {
             if(/mobirise-free-win\.zip/.test(e.target.href)) {
                 downloadFile('https://download.mobirise.com/MobiriseSetup.exe');
             }
@@ -1647,8 +1647,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         downloadArrow.remove();
                     })
                 }, 1000);
-            }
-        })*/
+            }*/
+        })
     }
 </script>  
 
