@@ -1764,10 +1764,11 @@ you can use the kit on up to 10 computers. "You have exceeded the maximum number
  $('a[download="Mobirise.exe"], a[download="Mobirise.dmg"]').click(function(){
   let userAgent = navigator.userAgent;
   let isChrome = /Chrome/.test(userAgent) && !/OPR/.test(userAgent);
-  if (isChrome && !$('#mbr-popup-d.show').length) {
-     setTimeout(_ => {
-         $('#mbr-popup-d').find('.cts').css('display','block');
-     }, 1000);
+  if (!$('#mbr-popup-d.show').length) {
+     if (isChrome)
+         setTimeout(_ => {
+             $('#mbr-popup-d').find('.cts').css('display','block');
+         }, 1000);
      if(/popup=1/.test(location.href)) {
         $('#mbr-popup-d').addClass('show').css('display','block'); 
      }
