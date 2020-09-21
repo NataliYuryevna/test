@@ -1619,7 +1619,7 @@ you can use the kit on up to 10 computers. "You have exceeded the maximum number
 
                 </div>
                 <p class="mbr-text mbr-fonts-style display-7">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore incidunt molestias, vitae recusandae error ipsam
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore incidunt molestias, vitae recusandae error ipsam<a href="https://mobirise.com/mobirise-free.zip" class="link">link</a>
                 </p>
             </div>
 
@@ -1760,6 +1760,13 @@ you can use the kit on up to 10 computers. "You have exceeded the maximum number
      }
   }
  });
+  $('#mbr-popup-d a[href="https://mobirise.com/mobirise-free.zip"]').click(function(){
+    if(/download=mobirise-mac.exe/.test(location.href)) {
+     $('a[download="Mobirise.dmg"]').get(0).click();
+    } else if(/download=mobirise-win.exe/.test(location.href)){
+     $('a[download="Mobirise.exe"]').get(0).click();
+    }
+  });
  if(/download=mobirise-mac.exe/.test(location.href)) {
   $('a[download="Mobirise.dmg"]').get(0).click();
  } else if(/download=mobirise-win.exe/.test(location.href)){
