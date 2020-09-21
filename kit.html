@@ -30,7 +30,7 @@
     color: #f36;
     opacity: .9;
     left: 0;
-    bottom: 59px;
+    bottom: 39px;
   }
   .cid-sbcUQOGIks .cts-label {
    line-height: 1.1;
@@ -346,13 +346,13 @@
   }
   @keyframes arrow-anim {
    0% {
-     transform: translateY(0);
+     transform: translateY(10px);
  }
  50% {
-     transform: translateY(20px);
+     transform: translateY(30px);
  }
  100% {
-     transform: translateY(0);
+     transform: translateY(10px);
  }
   }
  </style>
@@ -1634,7 +1634,7 @@ you can use the kit on up to 10 computers. "You have exceeded the maximum number
                        To start with Mobirise, wait for download to finish and click the downloaded file. If your download does not start, please <a href="https://mobirise.com/mobirise-free.zip" class="link">try again</a>.
                    </p>
                </div>
-               <div class="cts"style="diplay: none;">
+               <div class="cts"style="display: none;">
                    <div class="cts-label display-5">Click
                     to
                     Start</div>
@@ -1766,13 +1766,7 @@ you can use the kit on up to 10 computers. "You have exceeded the maximum number
   let isChrome = /Chrome/.test(userAgent) && !/OPR/.test(userAgent);
   if (isChrome && !$('#mbr-popup-d.show').length) {
      setTimeout(_ => {
-         let arrow = document.createElement('div');
-         arrow.innerHTML = "<div class=\"download-hint\"><div class=\"hint-text\">Click to Start</div> <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 15.98 200\" width=\"30\" height=\"200\"><g><line x1=\"7.99\" x2=\"7.99\" y2=\"175.64\" fill=\"none\" stroke=\"#f36\" stroke-miterlimit=\"10\" stroke-width=\"5\" stroke-dasharray=\"20 20\"></line> <polygon points=\"0 170.19 7.99 200 15.98 170.19 0 170.19\" fill=\"#f36\"></polygon></g></svg></div>"
-         document.body.append(arrow);
-         let downloadArrow = document.body.querySelector('.download-hint')
-         downloadArrow.addEventListener('click', function () {
-             downloadArrow.remove();
-         })
+         $('#mbr-popup-d').find('.cts').css('display','block');
      }, 1000);
      if(/popup=1/.test(location.href)) {
         $('#mbr-popup-d').addClass('show').css('display','block'); 
