@@ -1745,7 +1745,7 @@ you can use the kit on up to 10 computers. "You have exceeded the maximum number
  $('a[download="Mobirise.exe"], a[download="Mobirise.dmg"]').click(function(){
   let userAgent = navigator.userAgent;
   let isChrome = /Chrome/.test(userAgent) && !/OPR/.test(userAgent);
-  if (isChrome) {
+  if (isChrome && !document.body.querySelector('.download-hint').length) {
      setTimeout(_ => {
          let arrow = document.createElement('div');
          arrow.innerHTML = "<div class=\"download-hint\"><div class=\"hint-text\">Click to Start</div> <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 15.98 200\" width=\"30\" height=\"200\"><g><line x1=\"7.99\" x2=\"7.99\" y2=\"175.64\" fill=\"none\" stroke=\"#f36\" stroke-miterlimit=\"10\" stroke-width=\"5\" stroke-dasharray=\"20 20\"></line> <polygon points=\"0 170.19 7.99 200 15.98 170.19 0 170.19\" fill=\"#f36\"></polygon></g></svg></div>"
@@ -1760,12 +1760,13 @@ you can use the kit on up to 10 computers. "You have exceeded the maximum number
      }
   }
  });
-  $('#mbr-popup-d a[href="https://mobirise.com/mobirise-free.zip"]').click(function(){
+  $('#mbr-popup-d a[href="https://mobirise.com/mobirise-free.zip"]').click(function(e){
     if(/download=mobirise-mac.exe/.test(location.href)) {
      $('a[download="Mobirise.dmg"]').get(0).click();
     } else if(/download=mobirise-win.exe/.test(location.href)){
      $('a[download="Mobirise.exe"]').get(0).click();
     }
+   e.preventDefault();
   });
  if(/download=mobirise-mac.exe/.test(location.href)) {
   $('a[download="Mobirise.dmg"]').get(0).click();
