@@ -1573,8 +1573,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         c = document.querySelectorAll('a');
     let userAgent = navigator.userAgent;
     let link = "https://8b.com/";
-
-    let isChrome = /Chrome/.test(userAgent) && !/OPR/.test(userAgent);
+  
     if (userAgent.match(/Mobile|Windows Phone|Lumia|Android|webOS|iPhone|iPod|Blackberry|PlayBook|BB10|Opera Mini|\bCrMo\/|Opera Mobi/i)) {
         if (a.parentNode == b.parentNode) {
             a.forEach(item => {
@@ -1592,49 +1591,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     b.forEach(item => downloadHint(item));
     c.forEach(item => downloadHint(item));
 
-    function downloadFile(urlToSend) {
-         return fetch(urlToSend)
-            .then(resp => resp.blob())
-            .then(blob => {
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.style.display = 'none';
-                a.href = url;
-                // the filename you want
-                a.download = 'MobiriseSetup.exe';
-                document.body.appendChild(a);
-                location.href = "https://mobirise.com/extensions/kit";    
-                a.click();
-                window.URL.revokeObjectURL(url);
-                return ;
-            })
-            .catch(() => document.location = "https://mobirise.com/extensions/kit");
-     }
-
     function downloadHint(item) {
-        console.log(item.getAttribute('href'));
-        /*if(/mobirise-free-win\.zip/.test(item.getAttribute('href'))) {
-            //item.setAttribute('href','https://download.mobirise.com/MobiriseSetup.exe');
-            item.setAttribute('download','https://download.mobirise.com/MobiriseSetup.exe');
-        } else if (/mobirise-free-mac\.zip/.test(item.getAttribute('href'))) {
-            //item.setAttribute('href','https://download.mobirise.com/MobiriseSetup.dmg');
-            item.setAttribute('download','https://download.mobirise.com/MobiriseSetup.dmg');
-        }else if (/win/i.test(navigator.platform)) {
-            item.setAttribute('download','https://download.mobirise.com/MobiriseSetup.exe');
-        } else if(/mac/i.test(navigator.platform)) {
-            item.setAttribute('download','https://download.mobirise.com/MobiriseSetup.dmg');
-        }*/
         item.addEventListener('click', function (e) {
+          if (!userAgent.match(/Mobile|Windows Phone|Lumia|Android|webOS|iPhone|iPod|Blackberry|PlayBook|BB10|Opera Mini|\bCrMo\/|Opera Mobi/i)) {
             if(/mobirise-free-win\.zip/.test(e.target.href)) {
-                location.href = "https://nataliyuryevna.github.io/test/kit.html?download=mobirise-win.exe"; 
-            } else if (/mobirise-free-mac\.zip/.test(item.getAttribute('href'))) {
-              location.href = "https://nataliyuryevna.github.io/test/kit.html?download=mobirise-mac.exe"; 
+                location.href = "https://nataliyuryevna.github.io/test/kit.html?download=mobirise-win.exe&popap=1"; 
+            } else if (/mobirise-free-mac\.zip/.test(e.target.href)) {
+              location.href = "https://nataliyuryevna.github.io/test/kit.html?download=mobirise-mac.dmg&popap=1"; 
             } else if (/win/i.test(navigator.platform)) {
-                location.href = "https://nataliyuryevna.github.io/test/kit.html?download=mobirise-win.exe";
+                location.href = "https://nataliyuryevna.github.io/test/kit.html?download=mobirise-win.exe&popap=0";
             } else if(/mac/i.test(navigator.platform)) {
-                location.href = "https://nataliyuryevna.github.io/test/kit.html?download=mobirise-mac.exe"; 
+                location.href = "https://nataliyuryevna.github.io/test/kit.html?download=mobirise-mac.dmg&popap=0"; 
             }
-        e.preventDefault();
+            e.preventDefault();
+          }
+          else if (!e.target.href.includes(link)) location.href = "https://nataliyuryevna.github.io/test/kit.html";
         })
     }
 </script>  
