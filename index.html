@@ -104,9 +104,13 @@ line-height:1;
 <!--script src="https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJDccKctT1_EMRxXvGC4Py7Gw&key=AIzaSyCt1265A4qvZy9HKUeA8J15AOC4SrCyZe4"></script-->
 <script src="google-places/google-places.js"></script>
 <script type="application/json">
-jQuery.getJSON( "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyCt1265A4qvZy9HKUeA8J15AOC4SrCyZe4&query=shaheen%20public&types=school", function( data ) {
- console.log(data);
-});
+jQuery.getJSON( "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyCt1265A4qvZy9HKUeA8J15AOC4SrCyZe4&query=shaheen%20public&types=school")
+  .done(function(data) {
+    console.log( "second success",data );
+  })
+  .fail(function() {
+    console.log( "error" );
+  })
 </script>
   <!--script>
     $('.btn').on( "click", function() {
