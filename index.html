@@ -104,17 +104,8 @@ line-height:1;
 <script src="https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJDccKctT1_EMRxXvGC4Py7Gw&key=AIzaSyCt1265A4qvZy9HKUeA8J15AOC4SrCyZe4"></script>
 <script src="google-places/google-places.js"></script>
 <script>
-jQuery(document).ready(function( $ ) {
-   $("#google-reviews").googlePlaces({
-        placeId: 'ChIJDccKctT1_EMRxXvGC4Py7Gw' //Find placeID @: https://developers.google.com/places/place-id
-      , render: ['reviews']
-      , min_rating:4
-      , max_rows:5
-      ,rotateTime: false
-      , shorten_names: true
- 
-     
-   });
+jQuery.get( "https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJDccKctT1_EMRxXvGC4Py7Gw&key=AIzaSyCt1265A4qvZy9HKUeA8J15AOC4SrCyZe4", function( data ) {
+ console.log(data);
 });
 </script>
   <!--script>
